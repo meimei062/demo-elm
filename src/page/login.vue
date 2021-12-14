@@ -7,11 +7,13 @@
       <el-form-item>
         <el-input v-model="loginForm.password" placeholder=" 请输入密码" />
       </el-form-item>
+      <div>{{ msg }}</div>
     </el-form>
   </div>
 </template>
 
 <script>
+import store from '@/utils/constObj.js'
 export default {
   name: 'Login',
   data() {
@@ -21,6 +23,17 @@ export default {
         password: ''
       }
     }
+  },
+  computed: {
+    msg() {
+      return store.msg
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      console.log('store', store.state)
+      store.setMessageAction('Hello Again')
+    }, 1000)
   }
 }
 </script>
