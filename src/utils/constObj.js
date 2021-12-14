@@ -1,10 +1,9 @@
-const store = {
+const obj = {
   state: {
     message: 'Hello'
   },
   msg: 'Hello',
   setMessageAction(newMsg) {
-    console.log('setMessageAction  ', newMsg)
     this.state.message = newMsg
     this.msg = newMsg
   },
@@ -12,4 +11,4 @@ const store = {
     this.state.message = ''
   }
 }
-export default store
+export default obj

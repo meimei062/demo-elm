@@ -7,7 +7,7 @@
       <el-form-item>
         <el-input v-model="loginForm.password" placeholder=" 请输入密码" />
       </el-form-item>
-      <div>{{ msg }}</div>
+      <div>{{ $store.state.count }}</div>
     </el-form>
   </div>
 </template>
@@ -30,9 +30,9 @@ export default {
     }
   },
   mounted() {
+    console.log(this.$store.state.count)
     setTimeout(() => {
-      console.log('store', store.state)
-      store.setMessageAction('Hello Again')
+      this.$store.commit('increment')
     }, 1000)
   }
 }

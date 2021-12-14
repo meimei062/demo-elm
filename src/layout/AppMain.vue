@@ -14,7 +14,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$route.path)
     window.document.documentElement.setAttribute('data-theme', 'dark')
   }
 }
