@@ -7,13 +7,16 @@
       <el-form-item>
         <el-input v-model="loginForm.password" placeholder=" 请输入密码" />
       </el-form-item>
-      <div>{{ $store.state.count }}</div>
+      <div>{{ count }}</div>
+      <div>{{ msg }}</div>
+      <div>{{ doneTodosCount }}</div>
+      <div>{{ getTodoId(1) }}</div>
     </el-form>
   </div>
 </template>
 
 <script>
-import store from '@/utils/constObj.js'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 export default {
   name: 'Login',
   data() {
@@ -25,15 +28,20 @@ export default {
     }
   },
   computed: {
-    msg() {
-      return store.msg
-    }
+    ...mapState('testStore', ['count', 'msg']),
+    ...mapGetters('testStore', ['doneTodosCount', 'getTodoId'])
   },
   mounted() {
-    console.log(this.$store.state.count)
     setTimeout(() => {
-      this.$store.commit('increment')
+      this.$store.commit('testStore/increment', 2)
+      this.addTodo({ id: 3, text: 'todo 3', done: true })
+      this.$store.dispatch('testStore/incrementBy', 20)
+      // this.incrementBy(30)
     }, 1000)
+  },
+  methods: {
+    ...mapMutations('testStore', ['increment', 'addTodo']),
+    ...mapActions('testStore', ['incrementBy'])
   }
 }
 </script>

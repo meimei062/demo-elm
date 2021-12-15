@@ -1,15 +1,13 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import appStore from './modules/app.js'
+import testStore from './modules/test.js'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment(state) {
-      state.count += 5
-    }
+  modules: {
+    appStore,
+    testStore
   }
 })
 export default store
