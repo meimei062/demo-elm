@@ -1,10 +1,14 @@
 export default {
   state: {
-    username: ''
+    username: '',
+    rememberPsw: false
   },
   mutations: {
     SET_USER_NAME(state, name) {
       state.username = name
+    },
+    SET_REMEMBER_PSW(state, rememberPsw) {
+      state.rememberPsw = rememberPsw
     }
   },
   getters: {},
