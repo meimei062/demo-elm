@@ -13,6 +13,10 @@ body {
   height: 100%;
   background-color: $bg_main;
 }
+input {
+  border: none;
+  outline: none;
+}
 #app {
   height: 100%;
   width: 100%;
@@ -21,4 +25,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   overflow: auto;
+}
+
+.el-button--primary {
+    height: 44px;
+    border: none;
+    background-color: $btn_color_active;
+    color: white;
+}
+.el-button.is-disabled {
+  background-color: $btn_color_disable;
 }

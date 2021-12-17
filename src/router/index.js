@@ -11,15 +11,13 @@ const routes = [
   },
   // { path: '/login', component: () => import(/* webpackChunkName:'page-login' */ '@/page/login.vue') },
   {
+    path: '/test',
+    component: () => import(/* webpackChunkName:'page-test' */ '@/page/test.vue')
+  },
+  {
     path: '/login',
-    component: Layout,
-    children: [
-      {
-        path: '',
-        component: () => import(/* webpackChunkName:'page-login' */ '@/page/login.vue'),
-        meta: { title: 'Login' }
-      }
-    ]
+    component: () => import(/* webpackChunkName:'page-login' */ '@/page/login.vue'),
+    meta: { title: 'Login' }
   },
   {
     path: '/main',

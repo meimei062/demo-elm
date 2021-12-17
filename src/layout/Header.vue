@@ -1,5 +1,11 @@
 <template>
-  <div class="header-div">{{ title }}</div>
+  <div class="header-div">
+    <div class="header-back"><i class="el-icon-arrow-left" /></div>
+    <div>{{ title }}</div>
+    <div class="header-right">
+      <slot name="right-bar" />
+    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -23,5 +29,14 @@ export default {
   background-color: $bg_header;
   font-size: 24px;
   color: $color_header;
+  .header-back {
+    position: absolute;
+    width: 60px;
+  }
+  .header-right{
+    position: absolute;
+    top: 0;
+    right: 10px;
+  }
 }
 </style>
