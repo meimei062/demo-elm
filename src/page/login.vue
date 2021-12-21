@@ -16,7 +16,7 @@
       <el-form-item class="login-tips">温馨提示：未注册账号的手机号，登录时将自动注册，并代表您已同意
         <a href="#">用户服务协议</a></el-form-item>
       <el-form-item>
-        <el-button id="btnLogin" type="primary">登录</el-button>
+        <el-button id="btnLogin" type="primary" @click="login">登录</el-button>
       </el-form-item>
     </el-form>
 
@@ -51,7 +51,10 @@ export default {
     changeLoginWay() {
       this.isCodeLogin = !this.isCodeLogin
     },
-    getVerifyCode() {}
+    getVerifyCode() {},
+    login() {
+      this.$router.push('/main')
+    }
   }
 }
 </script>

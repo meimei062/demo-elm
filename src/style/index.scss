@@ -27,10 +27,16 @@ input {
   overflow: auto;
 }
 
-.el-button--primary {
+.el-button--primary, .el-button--primary.is-active, .el-button--primary:active {
     height: 44px;
     border: none;
     background-color: $btn_color_active;
+    color: white;
+}
+.el-button--primary:focus, .el-button--primary:hover {
+    height: 44px;
+    border: none;
+    background-color: $btn_color_hover;
     color: white;
 }
 .el-button.is-disabled {
