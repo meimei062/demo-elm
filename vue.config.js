@@ -8,7 +8,12 @@ module.exports = {
   outputDir: 'dist',
   devServer: {
     host: '0.0.0.0',
-    port: '9008'
+    port: '9008',
+    proxy: {
+      '/*': {
+        target: ''
+      }
+    }
   },
   configureWebpack: {
     name: 'Web',

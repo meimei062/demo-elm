@@ -39,6 +39,6 @@ input {
     background-color: $btn_color_hover;
     color: white;
 }
-.el-button.is-disabled {
+.el-button.is-disabled, .el-button.is-disabled:focus, .el-button.is-disabled:hover {
   background-color: $btn_color_disable;
 }

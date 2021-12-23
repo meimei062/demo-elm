@@ -5,6 +5,7 @@ import App from './App.vue'
 import 'element-ui/lib/theme-chalk/index.css'
 import './style/index.scss'
 import store from './store/index.js'
+import './mock'
 
 Vue.use(ElementUI)
 
