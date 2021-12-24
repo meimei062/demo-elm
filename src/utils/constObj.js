@@ -10,7 +10,7 @@ const obj = {
   // clearMessageAction() {
   //   this.state.message = ''
   // }
-  REQUEST_SUCCESS: 1000,
-  REQUEST_FAIL: 1001
+  REQUEST_SUCCESS: '1000',
+  REQUEST_FAIL: '1001'
 }
 export default obj

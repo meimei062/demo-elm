@@ -7,16 +7,17 @@
     </my-header>
     <el-form v-if="isCodeLogin" id="loginForm" ref="loginForm" :model="loginForm" :rules="loginRules">
       <el-form-item prop="username">
-        <el-input v-model="loginForm.username" placeholder="手机号" />
+        <el-input v-model="loginForm.username" :placeholder="$t('login.username_empty')" />
         <el-button id="btnCode" type="primary" :disabled="btnCodeDisabled" @click="getVerifyCode">{{ verifyText }}</el-button>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input v-model="loginForm.password" placeholder="验证码" />
+        <el-input v-model="loginForm.password" :placeholder="$t('login.psw_empty')" />
       </el-form-item>
-      <el-form-item class="login-tips">温馨提示：未注册账号的手机号，登录时将自动注册，并代表您已同意
-        <a href="#">用户服务协议</a></el-form-item>
+      <el-form-item class="login-tips">{{ $t('login.login_tips') }}
+        <a href="#">{{ $t('login.user_agreement') }}</a>
+      </el-form-item>
       <el-form-item>
-        <el-button class="btnLogin" type="primary" :disabled="btnLoginDisabled" @click="login">登录</el-button>
+        <el-button class="btnLogin" type="primary" :disabled="btnLoginDisabled" @click="login">{{ $t('login.login') }}</el-button>
       </el-form-item>
     </el-form>
 
@@ -27,17 +28,18 @@
 import MyHeader from '@/layout/Header.vue'
 import { getVerifyCode, login } from '@/api'
 import { isEmptyStr } from '@/utils'
+import bus from '@/utils/bus'
 export default {
   name: 'Login',
   components: { MyHeader },
   data() {
     return {
       loginForm: {
-        username: '',
-        password: ''
+        username: '15208260885',
+        password: '1244567'
       },
       isCodeLogin: true,
-      verifyText: '获取验证码',
+      verifyText: this.$t('login.get_verify_code'),
       timeLeft: 30,
       btnCodeDisabled: false,
       loginRules: {}
@@ -48,10 +50,10 @@ export default {
       return this.$route.meta ? this.$route.meta.title : ''
     },
     loginWayText() {
-      return this.isCodeLogin ? '密码登录' : '验证码登录'
+      return this.isCodeLogin ? this.$t('login.login_psw') : this.$t('login.login_code')
     },
     btnLoginDisabled() {
-      return !this.isCodeLogin
+      return isEmptyStr(this.loginForm.username) || isEmptyStr(this.loginForm.password)
     }
   },
   mounted() {
@@ -63,15 +65,14 @@ export default {
     },
     initRules() {
       const validateName = (rule, value, callback) => {
-        console.log(value)
         if (isEmptyStr(value)) {
-          return callback(new Error('请输入用户名'))
+          return callback(new Error(this.$t('login.username_empty')))
         }
         return callback()
       }
       const validatePsw = (rule, value, callback) => {
         if (isEmptyStr(value)) {
-          return callback(new Error('请输入验证码'))
+          return callback(new Error(this.$t('login.psw_empty')))
         }
         return callback()
       }
@@ -81,7 +82,11 @@ export default {
       }
     },
     getVerifyCode() {
-      getVerifyCode('/verify', { phone: '15208260885' }).then(res => {
+      if (isEmptyStr(this.loginForm.username)) {
+        bus.alert(this.$t('login.username_empty'))
+        return
+      }
+      getVerifyCode('/verify', { phone: this.loginForm.username }).then(res => {
         this.verifyText = '已发送(' + this.timeLeft + 's)'
         const timer = setInterval(() => {
           if (this.timeLeft > 0) {
@@ -91,23 +96,22 @@ export default {
           } else {
             this.btnCodeDisabled = false
             this.timeLeft = 30
-            this.verifyText = '获取验证码'
+            this.verifyText = this.$t('login.get_verify_code')
             clearInterval(timer)
           }
         }, 1000)
-      }).catch(err => {
-        console.log(err)
+      }).catch(() => {
+        bus.alert(this.$t('login.send_code_fail'))
       })
     },
     login() {
       this.$refs.loginForm.validate(valid => {
-        console.log(valid)
         if (valid) {
-          login('/login', { username: '15208260885', password: '123456' }).then(res => {
+          login('/login', { username: this.loginForm.username, password: this.loginForm.password }).then(res => {
             console.log(res)
             this.$router.push('/main')
-          }).catch(err => {
-            console.log(err)
+          }).catch(() => {
+            bus.alert(this.$t('login.login_fail'))
           })
         }
       })
