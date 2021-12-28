@@ -20,6 +20,16 @@ const routes = [
     meta: { title: 'Login' }
   },
   {
+    path: '/location',
+    component: () => import(/* webpackChunkName:'page-location' */ '@/page/location/location.vue'),
+    meta: { title: 'Location' }
+  },
+  {
+    path: '/city',
+    component: () => import(/* webpackChunkName:'page-location' */ '@/page/location/city.vue'),
+    meta: { title: 'City' }
+  },
+  {
     path: '/main',
     name: 'main',
     component: Layout,

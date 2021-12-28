@@ -23,7 +23,6 @@ input {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   overflow: auto;
 }
 
@@ -42,3 +41,7 @@ input {
 // .el-button.is-disabled, .el-button.is-disabled:focus, .el-button.is-disabled:hover {
 //   background-color: $btn_color_disable;
 // }
+.el-message-box {
+  width: 80%;
+  max-width: 420px;
+}

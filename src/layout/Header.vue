@@ -29,6 +29,7 @@ export default {
   background-color: $bg_header;
   font-size: 24px;
   color: $color_header;
+  text-align: center;
   .header-back {
     position: absolute;
     width: 60px;
