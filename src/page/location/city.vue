@@ -30,22 +30,40 @@
 </template>
 <script>
 import Description from '@/components/Description.vue'
+import { getHistoryCities, getHotCities } from '@/api'
+
 export default {
   name: 'City',
   components: { Description },
   data() {
     return {
       city: '',
-      hisCityList: [{ id: 5, name: '成都' }],
-      hotCityList: [{ id: 1, name: '北京' }, { id: 2, name: '上海' }, { id: 4, name: '深圳' }, { id: 5, name: '成都' }]
+      // hisCityList: [{ id: 5, name: '成都' }],
+      // hotCityList: [{ id: 1, name: '北京' }, { id: 2, name: '上海' }, { id: 4, name: '深圳' }, { id: 5, name: '成都' }]
+      hisCityList: [],
+      hotCityList: []
     }
   },
 
   mounted() {
+    this.initData()
   },
 
   methods: {
-
+    initData() {
+      // 获取历史访问城市
+      getHistoryCities({ id: 12 }).then(res => {
+        this.hisCityList = res.data
+      }).catch(err => {
+        console.log(err)
+      })
+      // 获取热门城市
+      getHotCities({}).then(res => {
+        this.hotCityList = res.data
+      }).catch(err => {
+        console.log(err)
+      })
+    }
   }
 }
 </script>

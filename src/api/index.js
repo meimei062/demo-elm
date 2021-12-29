@@ -1,7 +1,7 @@
 import request from './base.js'
 import constObj from '@/utils/constObj.js'
 
-export const getVerifyCode = (url, data) => {
+function get(url, data) {
   return new Promise((resolve, reject) => {
     request.get(url, { params: data }).then(response => {
       if (response.data.status === constObj.REQUEST_SUCCESS) {
@@ -15,7 +15,7 @@ export const getVerifyCode = (url, data) => {
   })
 }
 
-export const login = (url, data) => {
+function post(url, data) {
   return new Promise((resolve, reject) => {
     request.post(url, data).then(response => {
       if (response.data.status === constObj.REQUEST_SUCCESS) {
@@ -27,4 +27,20 @@ export const login = (url, data) => {
       reject(err)
     })
   })
+}
+
+export const getVerifyCode = (data) => {
+  return get('/verify', data)
+}
+
+export const login = (data) => {
+  return post('/login', data)
+}
+
+export const getHistoryCities = (data) => {
+  return post('/getHisCities', data)
+}
+
+export const getHotCities = (data) => {
+  return post('/getHotCities', data)
 }

@@ -86,7 +86,7 @@ export default {
         bus.alert(this.$t('login.username_empty'))
         return
       }
-      getVerifyCode('/verify', { phone: this.loginForm.username }).then(res => {
+      getVerifyCode({ phone: this.loginForm.username }).then(res => {
         this.verifyText = '已发送(' + this.timeLeft + 's)'
         const timer = setInterval(() => {
           if (this.timeLeft > 0) {
@@ -107,8 +107,7 @@ export default {
     login() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          login('/login', { username: this.loginForm.username, password: this.loginForm.password }).then(res => {
-            console.log(res)
+          login({ username: this.loginForm.username, password: this.loginForm.password }).then(res => {
             this.$router.push('/main')
           }).catch(() => {
             bus.alert(this.$t('login.login_fail'))
