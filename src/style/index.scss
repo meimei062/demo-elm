@@ -1,8 +1,8 @@
 @import './variables.scss';
 
-html, body {
-  margin: 0px;
-  padding: 0px;
+* {
+  margin: 0;
+  padding: 0;
 }
 html {
   height: 100%;
@@ -16,6 +16,9 @@ body {
 input {
   border: none;
   outline: none;
+}
+ul, li {
+  list-style: none;
 }
 #app {
   height: 100%;

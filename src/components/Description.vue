@@ -31,10 +31,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '~@/style/variables.scss';
 .description-container {
   margin-top: 20px;
   .description-title {
-    color: #8a8a8a;
+    color: $text_color_subtitle;
   }
   .description-main {
     margin-top: 10px;

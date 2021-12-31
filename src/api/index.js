@@ -41,6 +41,10 @@ export const getHistoryCities = (data) => {
   return post('/getHisCities', data)
 }
 
-export const getHotCities = (data) => {
-  return post('/getHotCities', data)
+export const getHotCities = () => {
+  return get('/getHotCities', {})
+}
+
+export const getAllCities = () => {
+  return get('/getAllCities', {})
 }
