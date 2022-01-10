@@ -108,7 +108,8 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           login({ username: this.loginForm.username, password: this.loginForm.password }).then(res => {
-            this.$router.push('/main')
+            this.$store.commit('SET_TOKEN', res.token)
+            this.$router.replace('/main')
           }).catch(() => {
             bus.alert(this.$t('login.login_fail'))
           })

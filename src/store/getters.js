@@ -1,5 +1,5 @@
 export default {
-  getVersionCode(state) {
+  versionCode(state) {
     return state.versionCode
   }
 }

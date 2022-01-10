@@ -37,6 +37,10 @@ export const login = (data) => {
   return post('/login', data)
 }
 
+export const logOut = (data) => {
+  return post('/logout', data)
+}
+
 export const getHistoryCities = (data) => {
   return post('/getHisCities', data)
 }

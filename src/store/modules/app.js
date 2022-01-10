@@ -1,7 +1,11 @@
+import Cookies from 'js-cookie'
 export default {
+  // namespaced: true,
   state: {
     username: '',
-    rememberPsw: false
+    rememberPsw: false,
+    token: Cookies.get('token') || '',
+    location: Cookies.get('location') || ''
   },
   mutations: {
     SET_USER_NAME(state, name) {
@@ -9,9 +13,25 @@ export default {
     },
     SET_REMEMBER_PSW(state, rememberPsw) {
       state.rememberPsw = rememberPsw
+    },
+    SET_TOKEN(state, token) {
+      state.token = token
+      Cookies.set('token', token)
+    },
+    setCity(state, city) {
+      state.location = city
+      Cookies.set('location', JSON.stringify(city))
     }
   },
-  getters: {},
+  getters: {
+    locationObj: state => {
+      console.log('getter', state.location)
+      if (state.location) {
+        return JSON.parse(state.location)
+      }
+      return {}
+    }
+  },
   actions: {
     getUserInfo({ commit }, id) {
       setTimeout(() => {

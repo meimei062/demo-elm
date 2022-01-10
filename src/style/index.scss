@@ -20,6 +20,7 @@ input {
 ul, li {
   list-style: none;
 }
+
 #app {
   height: 100%;
   width: 100%;
@@ -27,6 +28,14 @@ ul, li {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: auto;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
 }
 
 .el-button--primary, .el-button--primary.is-active, .el-button--primary:active {

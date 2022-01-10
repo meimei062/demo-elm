@@ -5,6 +5,7 @@ import { getQueryVariable } from '../utils'
 import locationApi from './location.js'
 
 const Random = Mock.Random
+const validToken = []
 
 const getVerifyCode = config => {
   const phone = getQueryVariable('phone', config.url)
@@ -15,10 +16,23 @@ const getVerifyCode = config => {
 }
 const login = config => {
   const reqData = JSON.parse(config.body)
+  const token = 'testTokenStr'
   if (reqData.username === '15208260885') {
-    return { status: 1000, message: 'login success' }
+    validToken.push(token)
+    return { status: 1000, message: 'login success', token: token }
   } else {
     return { status: 1001, message: 'username error' }
+  }
+}
+
+const logOut = config => {
+  const reqData = JSON.parse(config.body)
+  if (reqData.username === '15208260885') {
+    validToken.pop()
+    console.log(validToken)
+    return { status: 1000, message: 'logout success' }
+  } else {
+    return { status: 1001, message: 'logout error' }
   }
 }
 
@@ -48,6 +62,7 @@ const login = config => {
 const mocks = [
   { url: '/verify', type: 'get', response: getVerifyCode },
   { url: '/login', type: 'post', response: login },
+  { url: '/logout', type: 'post', response: logOut },
   ...locationApi
 ]
 

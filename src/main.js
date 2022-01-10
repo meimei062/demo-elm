@@ -8,6 +8,7 @@ import './style/index.scss'
 import store from './store/index.js'
 import './mock'
 import i18n from './i18n'
+import './router/permission'
 
 Vue.use(ElementUI)
 

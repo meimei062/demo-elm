@@ -15,7 +15,7 @@
         <description title="历史访问城市">
           <el-row :gutter="20">
             <el-col v-for="item in hisCityList" :key="item.id" :span="8">
-              <div class="city-item">{{ item.name }}</div>
+              <div class="city-item" @click="selectCity(item)">{{ item.name }}</div>
             </el-col>
           </el-row>
         </description>
@@ -45,6 +45,7 @@
 <script>
 import Description from '@/components/Description.vue'
 import { getHistoryCities, getHotCities, getAllCities } from '@/api'
+// import { mapMutations } from 'vuex'
 
 export default {
   name: 'City',
@@ -93,6 +94,7 @@ export default {
   },
 
   methods: {
+    // ...mapMutations('appStore', ['setCity']),
     initData() {
       // 获取历史访问城市
       getHistoryCities({ id: 12 }).then(res => {
@@ -137,6 +139,14 @@ export default {
       lis.forEach(li => {
         liY += li.offsetHeight
         this.cityListHeighes.push(liY)
+      })
+    },
+    selectCity(city) {
+      // this.$store.commit('SET_CITY', city)
+      this.$store.commit('setCity', city)
+      // this.setCity()
+      this.$router.replace({ path: '/main' }).catch(err => {
+        console.log(err)
       })
     }
   }

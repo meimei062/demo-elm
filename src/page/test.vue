@@ -4,7 +4,8 @@
     <div>{{ msg }}</div>
     <div>{{ doneTodosCount }}</div>
     <div>{{ getTodoId(1) }}</div>
-    <div>{{ getVersionCode }}</div>
+    <div>{{ versionCode }}</div>
+    <div>{{ locationObj }}</div>
   </div>
 </template>
 <script>
@@ -19,9 +20,9 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['getVersionCode']),
+    ...mapGetters(['versionCode', 'locationObj']),
     ...mapState('testStore', ['count', 'msg']),
-    ...mapGetters('testStore', ['doneTodosCount', 'getTodoId'])
+    ...mapGetters('testStore', ['doneTodosCount', 'getTodoId']),
   },
   mounted() {
     setTimeout(() => {

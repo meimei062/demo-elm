@@ -7,7 +7,7 @@ Vue.use(Router)
 const routes = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/main'
   },
   // { path: '/login', component: () => import(/* webpackChunkName:'page-login' */ '@/page/login.vue') },
   {
@@ -16,37 +16,33 @@ const routes = [
   },
   {
     path: '/login',
+    name: 'Login',
     component: () => import(/* webpackChunkName:'page-login' */ '@/page/login.vue'),
     meta: { title: 'Login' }
   },
   {
     path: '/location',
+    name: 'Location',
     component: () => import(/* webpackChunkName:'page-location' */ '@/page/location/location.vue'),
     meta: { title: 'Location' }
   },
   {
     path: '/city',
+    name: 'City',
     component: () => import(/* webpackChunkName:'page-location' */ '@/page/location/city.vue'),
     meta: { title: 'City' }
   },
   {
     path: '/main',
     name: 'main',
-    component: Layout,
-    meta: { title: 'Main' },
-    children: [
-      {
-        path: '',
-        component: () => import/* webpackChunkName:'page-main' */('@/page/main.vue'),
-        meta: { title: 'Main' }
-      },
-      {
-        path: 'goods',
-        name: 'Goods',
-        components: () => import(/* webpackChunkName:'page-main' */ '@/page/goods.vue'),
-        meta: { title: 'Goods Title' }
-      }
-    ]
+    component: () => import(/* webpackChunkName:'page-main' */ '@/page/main.vue'),
+    meta: { title: 'Main' }
+  },
+  {
+    path: '/goods',
+    name: 'Goods',
+    component: () => import(/* webpackChunkName:'page-main' */ '@/page/goods.vue'),
+    meta: { title: 'Goods Title' }
   },
   {
     path: '/error',
