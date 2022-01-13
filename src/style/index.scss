@@ -38,6 +38,17 @@ ul, li {
   float: left;
 }
 
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
 .el-button--primary, .el-button--primary.is-active, .el-button--primary:active {
     height: 44px;
     border: none;

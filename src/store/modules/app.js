@@ -19,13 +19,13 @@ export default {
       Cookies.set('token', token)
     },
     setCity(state, city) {
-      state.location = city
-      Cookies.set('location', JSON.stringify(city))
+      state.location = JSON.stringify(city)
+      Cookies.set('location', state.location)
     }
   },
   getters: {
     locationObj: state => {
-      console.log('getter', state.location)
+      console.log('getter', state.location, typeof state.location)
       if (state.location) {
         return JSON.parse(state.location)
       }
